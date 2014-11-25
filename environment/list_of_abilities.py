@@ -29,7 +29,7 @@ kata_q = Ability_Q('Bounding Blades',
 
 kata_w = Ability_W_Damage('Sinister Steel',
 						  cooldown=3,
-						  turns=2
+						  turns=2,
 						  damage=35)
 
 kata_e = Ability_E_Heal('Shunpo',

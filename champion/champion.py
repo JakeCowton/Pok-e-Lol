@@ -1,7 +1,8 @@
 # champion.py
-from ability import Ability_Q, __Ability_W, \
-				   Ability_E_Heal, Ability_E_Shield, \
-				   Ability_R_Buff, Ability_R_Attack
+from ability import Ability_Q, \
+					Ability_W_Damage, \
+				    Ability_E_Heal, \
+				    Ability_R_Attack
 
 class Champion(object):
 	"""A class to define a champion"""
@@ -15,42 +16,44 @@ class Champion(object):
 		self.name = name
 		self.health = 500
 		# self.shield = 0
-		set_abilities(abilities)
+		self.set_abilities(abilities)
+
+	def __repr__(self):
+		return self.name
+
+	def __str__(self):
+		return self.name
 
 	def set_abilities(self, abilities):
 		"""
 		Sets the champions abilities
 		@param abilities dict The abilities the champion has
 		"""
+		self.abilities = dict()
+
 		# Check the Q ability is valid
 		if isinstance(abilities.get('Q'), Ability_Q):
-			self.Q = abilities.get('Q')
+			self.abilities['Q'] = abilities.get('Q')
 		else:
-			raise ValueError("%s is not a valid Q abilty") % \
-				str(abilities.get('Q'))
+			raise ValueError("Invalid Q ability")
 
 		# Check the W ability is valud
-		if isinstance(abilities.get('W'), Ability_W):
-			self.W = abilities.get('W')
+		if isinstance(abilities.get('W'), Ability_W_Damage):
+			self.abilities['W'] = abilities.get('W')
 		else:
-			raise ValueError("%s is not a valid W abilty") % \
-				str(abilities.get('W'))
+			raise ValueError("Invalid W ability")
 
 		# Check the E ability
-		if isinstance(abilities.get('E'), Ability_E_Heal) or \
-			isinstance(abilities.get('E'), Ability_E_Shield):
-			self.E = abilities.get('E')
+		if isinstance(abilities.get('E'), Ability_E_Heal):
+			self.abilities['E'] = abilities.get('E')
 		else:
-			raise ValueError("%s is not a valid E abilty") % \
-				str(abilities.get('E'))
+			raise ValueError("Invalid E ability")
 
 		# Check the R ability
-		if isinstance(abilities.get('R'), Ability_R_Buff) or \
-			isinstance(abilities.get('R'), Ability_E_Attack):
-			self.E = abilities.get('R')
+		if isinstance(abilities.get('R'), Ability_R_Attack):
+			self.abilities['R'] = abilities.get('R')
 		else:
-			raise ValueError("%s is not a valid R abilty") % \
-				str(abilities.get('R'))
+			raise ValueError("Invalid R ability")
 
 	def receive_heal(self, health):
 		"""

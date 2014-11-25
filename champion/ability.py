@@ -12,14 +12,25 @@ class __Ability(object):
         self.name = name
         self.cooldown = cooldown
 
+    def __repr__(self):
+        return self.name
+
+    def __str__(self):
+        return self.name
+
     def useable(self):
+        # Check if the ability is on cooldown
         if cooldown == 0: return True
         else: return False
 
     def use(self):
+        # Start the cooldown timer of that ability
         self.cd_timer = self.cooldown
 
     def turn(self):
+        """
+        Thing that need to be done each turn
+        """
         if self.cd_timer > 0:
             self.cd_timer -= 1
 
@@ -30,10 +41,16 @@ class Ability_Q(__Ability):
     """
 
     def __init__(self, name, cooldown, damage):
+        """
+        @param damage how much damage the attack does
+        """
         __Ability.__init__(self, name, cooldown)
         self.damage = damage
 
-    def use(self):
+    def use(self, champion):
+        """
+        @param champion the champion the attack is being used on
+        """
         Ability.use(self)
         champion.receive_damage(self.damage)
 
@@ -54,7 +71,7 @@ class Ability_W_Damage(__Ability_W):
     This deals damage x over the next y turns
     """
 
-    def __init__(self,name, cooldown, turns, damage):
+    def __init__(self, name, cooldown, turns, damage):
         __Ability_W.__init__(self, name, cooldown, turns)
         self.damage = damage
 
@@ -64,10 +81,9 @@ class Ability_W_Buff(__Ability_W):
     This gives a damage buff for x turns
     """
 
-    def __init__(self,name, cooldown, turns, multiplyer):
+    def __init__(self, name, cooldown, turns, multiplyer):
         __Ability_W.__init__(self, name, cooldown, turns)
         self.multiplyer = multiplyer
-
 
 
 class Ability_E_Heal(__Ability):

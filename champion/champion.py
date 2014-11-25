@@ -1,17 +1,56 @@
 # champion.py
+from ability import Ability_Q, __Ability_W, \
+				   Ability_E_Heal, Ability_E_Shield, \
+				   Ability_R_Buff, Ability_R_Attack
 
 class Champion(object):
 	"""A class to define a champion"""
 
-	def __init__(self, name, health, attack, armour, agility):
+	def __init__(self, name, stats, abilities):
+		"""
+		@param name The name of the champion
+		@param stats dict The stats the champion has
+		@param abilities dict The abilities the champion has
+		"""
 		self.name = name
-		self.health = health
-		self.attack = attack
-		self.armour = armour
-		self.agility = agility
+		self.health = stats.get('health')
+		self.attack = stats.get('attack')
+		self.armour = stats.get('armour')
+		self.agility = stats.get('agility')
 		self.shield = 0
 
-	def heal(self, health):
+	def set_abilities(self, abilities):
+		"""
+		Sets the champions abilities
+		@param abilities dict The abilities the champion has
+		"""
+		# Check the Q ability is valid
+		if isinstance(abilities.get('Q'), Ability_Q):
+			self.Q = abilities.get('Q')
+		else:
+			raise ValueError("%s is not a valid Q abilty") % str(abilities.get('Q'))
+
+		# Check the W ability is valud
+		if isinstance(abilities.get('W'), Ability_W):
+			self.W = abilities.get('W')
+		else:
+			raise ValueError("%s is not a valid W abilty") % str(abilities.get('W'))
+
+		# Check the E ability
+		if isinstance(abilities.get('E'), Ability_E_Heal) or \
+			isinstance(abilities.get('E'), Ability_E_Shield):
+			self.E = abilities.get('E')
+		else:
+			raise ValueError("%s is not a valid E abilty") % str(abilities.get('E'))
+
+		# Check the R ability
+		if isinstance(abilities.get('R'), Ability_R_Buff) or \
+			isinstance(abilities.get('R'), Ability_E_Attack):
+			self.E = abilities.get('R')
+		else:
+			raise ValueError("%s is not a valid R abilty") % str(abilities.get('R'))
+
+	def receive_heal(self, health):
 		"""
 		Champion has been given health
 		"""
@@ -36,5 +75,9 @@ class Champion(object):
 		else:
 			self.health -= damage
 
-	def shield(self, shield):
+	def receive_shield(self, shield):
+		"""
+		Gives the champion a shield
+		@param shield How much shield the champion gets
+		"""
 		self.shield += shield

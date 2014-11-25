@@ -6,18 +6,15 @@ from ability import Ability_Q, __Ability_W, \
 class Champion(object):
 	"""A class to define a champion"""
 
-	def __init__(self, name, stats, abilities):
+	def __init__(self, name, abilities):
 		"""
 		@param name The name of the champion
 		@param stats dict The stats the champion has
 		@param abilities dict The abilities the champion has
 		"""
 		self.name = name
-		self.health = stats.get('health')
-		self.attack = stats.get('attack')
-		self.armour = stats.get('armour')
-		self.agility = stats.get('agility')
 		self.shield = 0
+		set_abilities(abilities)
 
 	def set_abilities(self, abilities):
 		"""

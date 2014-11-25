@@ -27,17 +27,6 @@ class Ability(object):
         if cooldown == 0: return True
         else: return False
 
-    def use(self):
-        # Start the cooldown timer of that ability
-        self.cd_timer = self.cooldown
-
-    def turn(self):
-        """
-        Thing that need to be done each turn
-        """
-        if self.cd_timer > 0:
-            self.cd_timer -= 1
-
 
 class Ability_Q(Ability):
     """

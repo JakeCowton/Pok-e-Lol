@@ -6,13 +6,14 @@ from ability import Ability_Q, __Ability_W, \
 class Champion(object):
 	"""A class to define a champion"""
 
-	def __init__(self, name, abilities, ocean):
+	def __init__(self, name, abilities, ocean=None):
 		"""
 		@param name The name of the champion
 		@param abilities dict The abilities the champion has
 		@param ocean dict OCEAN score
 		"""
 		self.name = name
+		self.health = 500
 		# self.shield = 0
 		set_abilities(abilities)
 

@@ -90,7 +90,6 @@ class Ability_E_Heal(Ability):
 
     def heal(self, champion):
         champion.heal(self.health)
-        return True
 
 
 # class Ability_E_Shield(Ability):
@@ -120,7 +119,7 @@ class Ability_E_Heal(Ability):
 
 class Ability_R_Attack(Ability_Q):
     """
-    This deals raw damage
+    This deals heavy raw damage
     """
 
     def __init__(self, name, cooldown, damage):

@@ -6,11 +6,11 @@ from ability import Ability_Q, __Ability_W, \
 class Champion(object):
 	"""A class to define a champion"""
 
-	def __init__(self, name, abilities):
+	def __init__(self, name, abilities, ocean):
 		"""
 		@param name The name of the champion
-		@param stats dict The stats the champion has
 		@param abilities dict The abilities the champion has
+		@param ocean dict OCEAN score
 		"""
 		self.name = name
 		# self.shield = 0
@@ -86,14 +86,26 @@ class Champion(object):
 		"""
 		self.shield += shield
 
-	def ability_Q(self, champion):
+	def use_ability_Q(self, champion):
+		"""
+		@param champion The champion the ability is being used on
+		"""
 		self.Q.use(champion)
 
-	def ability_W(self, champion):
+	def use_ability_W(self, champion):
+		"""
+		@param champion The champion the ability is being used on
+		"""
 		self.W.use(champion)
 
-	def ability_E(self, champion):
+	def use_ability_E(self, champion):
+		"""
+		@param champion The champion the ability is being used on
+		"""
 		self.E.use(champion)
 
-	def ability_R(self, champion):
+	def use_ability_R(self, champion):
+		"""
+		@param champion The champion the ability is being used on
+		"""
 		self.R.use(champion)

@@ -28,27 +28,31 @@ class Champion(object):
 		if isinstance(abilities.get('Q'), Ability_Q):
 			self.Q = abilities.get('Q')
 		else:
-			raise ValueError("%s is not a valid Q abilty") % str(abilities.get('Q'))
+			raise ValueError("%s is not a valid Q abilty") % \
+				str(abilities.get('Q'))
 
 		# Check the W ability is valud
 		if isinstance(abilities.get('W'), Ability_W):
 			self.W = abilities.get('W')
 		else:
-			raise ValueError("%s is not a valid W abilty") % str(abilities.get('W'))
+			raise ValueError("%s is not a valid W abilty") % \
+				str(abilities.get('W'))
 
 		# Check the E ability
 		if isinstance(abilities.get('E'), Ability_E_Heal) or \
 			isinstance(abilities.get('E'), Ability_E_Shield):
 			self.E = abilities.get('E')
 		else:
-			raise ValueError("%s is not a valid E abilty") % str(abilities.get('E'))
+			raise ValueError("%s is not a valid E abilty") % \
+				str(abilities.get('E'))
 
 		# Check the R ability
 		if isinstance(abilities.get('R'), Ability_R_Buff) or \
 			isinstance(abilities.get('R'), Ability_E_Attack):
 			self.E = abilities.get('R')
 		else:
-			raise ValueError("%s is not a valid R abilty") % str(abilities.get('R'))
+			raise ValueError("%s is not a valid R abilty") % \
+				str(abilities.get('R'))
 
 	def receive_heal(self, health):
 		"""

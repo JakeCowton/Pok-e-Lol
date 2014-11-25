@@ -13,7 +13,7 @@ class Champion(object):
 		@param abilities dict The abilities the champion has
 		"""
 		self.name = name
-		self.shield = 0
+		# self.shield = 0
 		set_abilities(abilities)
 
 	def set_abilities(self, abilities):
@@ -61,20 +61,23 @@ class Champion(object):
 		"""
 		Champion has recieved damage
 		"""
-		# If the shield can take all the damage
-		if shield >= damage:
-			self.shield -= damage
-			# Remove the shield
-			shield = 0
 
-		# If the shield can take part of the damage
-		elif shield:
-			remaining = abs(shield - damage)
-			self.health -= remaining
+		self.health -= damage
 
-		# If there is no shield
-		else:
-			self.health -= damage
+		# # If the shield can take all the damage
+		# if shield >= damage:
+		# 	self.shield -= damage
+		# 	# Remove the shield
+		# 	shield = 0
+
+		# # If the shield can take part of the damage
+		# elif shield:
+		# 	remaining = abs(shield - damage)
+		# 	self.health -= remaining
+
+		# # If there is no shield
+		# else:
+		# 	self.health -= damage
 
 	def receive_shield(self, shield):
 		"""
@@ -82,3 +85,15 @@ class Champion(object):
 		@param shield How much shield the champion gets
 		"""
 		self.shield += shield
+
+	def ability_Q(self, champion):
+		self.Q.use(champion)
+
+	def ability_W(self, champion):
+		self.W.use(champion)
+
+	def ability_E(self, champion):
+		self.E.use(champion)
+
+	def ability_R(self, champion):
+		self.R.use(champion)

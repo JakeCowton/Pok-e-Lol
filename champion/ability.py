@@ -76,14 +76,14 @@ class Ability_W_Damage(Ability_W):
         self.damage = damage
 
 
-class Ability_W_Buff(Ability_W):
-    """
-    This gives a damage buff for x turns
-    """
+# class Ability_W_Buff(Ability_W):
+#     """
+#     This gives a damage buff for x turns
+#     """
 
-    def __init__(self, name, cooldown, turns, multiplyer):
-        Ability_W.__init__(self, name, cooldown, turns)
-        self.multiplyer = multiplyer
+#     def __init__(self, name, cooldown, turns, multiplyer):
+#         Ability_W.__init__(self, name, cooldown, turns)
+#         self.multiplyer = multiplyer
 
 
 class Ability_E_Heal(Ability):
@@ -100,29 +100,29 @@ class Ability_E_Heal(Ability):
         return True
 
 
-class Ability_E_Shield(Ability):
-    """
-    This creates a shield which absorbs x damage from the next attack
-    """
+# class Ability_E_Shield(Ability):
+#     """
+#     This creates a shield which absorbs x damage from the next attack
+#     """
 
-    def __init__(self, name, cooldown, shield):
-        Ability.__init__(self, name, cooldown)
-        self.shield = shield
+#     def __init__(self, name, cooldown, shield):
+#         Ability.__init__(self, name, cooldown)
+#         self.shield = shield
 
-    def shield(self, champion):
-        champion.shield(self.shield)
-        return True
+#     def shield(self, champion):
+#         champion.shield(self.shield)
+#         return True
 
 
-class Ability_R_Buff(Ability):
-    """
-    This creates a damage multipler for the next x turns
-    """
+# class Ability_R_Buff(Ability):
+#     """
+#     This creates a damage multipler for the next x turns
+#     """
 
-    def __init__(self, name, cooldown, turns, multiplyer):
-        Ability.__init__(self, name, cooldown)
-        self.turns = turns
-        self.multiplyer = multiplyer
+#     def __init__(self, name, cooldown, turns, multiplyer):
+#         Ability.__init__(self, name, cooldown)
+#         self.turns = turns
+#         self.multiplyer = multiplyer
 
 
 class Ability_R_Attack(Ability_Q):

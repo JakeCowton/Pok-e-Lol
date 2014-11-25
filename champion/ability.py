@@ -1,4 +1,8 @@
-# ability.py
+# Ability definitions for:
+# Ability_Q
+# Ability_W_Damage
+# Ability_E_Heal
+# Ability_R_Attack
 
 
 class Ability(object):

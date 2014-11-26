@@ -18,3 +18,5 @@ kata = Champion('Katarina',
 							'E': kata_e,
 							'R': kata_r,
 						  })
+
+champions = [ahri, kata]

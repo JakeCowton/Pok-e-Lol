@@ -1,4 +1,5 @@
 # Interface for the game
+from os import system as sys
 
 class Interface(object):
 
@@ -9,6 +10,7 @@ class Interface(object):
 		print ""
 
 	def display_info(self, champions):
+		print "\n"
 		for champion in champions:
 			print "%s has %d HP" % (champion, champion.health)
 		print "\n"
@@ -21,6 +23,7 @@ class Interface(object):
 			print "%d - %s" % (i, champions[i])
 		print "\n"
 		user_champion = raw_input("Which champion will you take? ")
+		sys('clear')
 
 		return int(user_champion)
 
@@ -31,7 +34,8 @@ class Interface(object):
 		print ""
 		print "Available abilities:"
 		for key, ability in champion.abilities.iteritems():
-			print "%s - %s" % (key, ability)
+			if ability.useable():
+				print "%s - %s" % (key, ability)
 		print "\n"
 		ability = raw_input("Choose: Q, W, E or R - ")
 
@@ -39,3 +43,8 @@ class Interface(object):
 
 	def error(self, message):
 		print message
+
+	def attack(self, attacker, ability, atackee):
+		sys('clear')
+		print ""
+		print "%s uses %s on %s" % (attacker, ability, atackee)

@@ -1,8 +1,4 @@
 # champion.py
-from ability import Ability_Q, \
-					Ability_W_Damage, \
-				    Ability_E_Heal, \
-				    Ability_R_Attack
 
 class Champion(object):
 	"""A class to define a champion"""
@@ -31,29 +27,17 @@ class Champion(object):
 		"""
 		self.abilities = dict()
 
-		# Check the Q ability is valid
-		if isinstance(abilities.get('Q'), Ability_Q):
-			self.abilities['Q'] = abilities.get('Q')
-		else:
-			raise ValueError("Invalid Q ability")
+		# Set the Q ability
+		self.abilities['Q'] = abilities.get('Q')
 
-		# Check the W ability is valud
-		if isinstance(abilities.get('W'), Ability_W_Damage):
-			self.abilities['W'] = abilities.get('W')
-		else:
-			raise ValueError("Invalid W ability")
+		# Set the W ability
+		self.abilities['W'] = abilities.get('W')
 
-		# Check the E ability
-		if isinstance(abilities.get('E'), Ability_E_Heal):
-			self.abilities['E'] = abilities.get('E')
-		else:
-			raise ValueError("Invalid E ability")
+		# Set the E ability
+		self.abilities['E'] = abilities.get('E')
 
-		# Check the R ability
-		if isinstance(abilities.get('R'), Ability_R_Attack):
-			self.abilities['R'] = abilities.get('R')
-		else:
-			raise ValueError("Invalid R ability")
+		# Set the R ability
+		self.abilities['R'] = abilities.get('R')
 
 	def receive_heal(self, health):
 		"""
@@ -89,27 +73,3 @@ class Champion(object):
 		@param shield How much shield the champion gets
 		"""
 		self.shield += shield
-
-	def use_ability_Q(self, champion):
-		"""
-		@param champion The champion the ability is being used on
-		"""
-		self.Q.use(champion)
-
-	def use_ability_W(self, champion):
-		"""
-		@param champion The champion the ability is being used on
-		"""
-		self.W.use(champion)
-
-	def use_ability_E(self, champion):
-		"""
-		@param champion The champion the ability is being used on
-		"""
-		self.E.use(champion)
-
-	def use_ability_R(self, champion):
-		"""
-		@param champion The champion the ability is being used on
-		"""
-		self.R.use(champion)

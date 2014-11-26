@@ -1,4 +1,6 @@
 # engine.pys
+from ability_manager import AbilityManager
+from ..champion.ability import AbilityHeal
 
 class GameEngine(object):
 	"""
@@ -11,6 +13,7 @@ class GameEngine(object):
 		self.user = user
 		self.npc = npc
 		self.turn_count = 0
+		self.ability_manager = AbilityManager()
 
 		self.run()
 
@@ -29,7 +32,10 @@ class GameEngine(object):
 
 			else:
 				# NPC
+				print "NPC does stuff"
+				self.ability_manager.turn()
 				self.npc_turn(self.npc)
+
 
 
 	# User related functions
@@ -38,21 +44,45 @@ class GameEngine(object):
 		One turn
 		@oaram champion The champion object whose turn it is
 		"""
+		# Select an ability
 		ability = self.select_ability(champion)
+
 		# Ability is activated
+		# If ability is a heal, use on self
+		if isinstance(ability, AbilityHeal):
+			ability.use(champion)
+
+		# Otherwise, use on NPC
+		else:
+			ability.use(self.npc)
+		self.interface.attack(champion, ability, self.npc)
+
 		# Ability is put on cooldown
+		self.ability_manager.put_on_cd(ability)
+
+
 		self.turn_count += 1
 
+
 	def select_ability(self, champion):
+		"""
+		Gets a champion to choose an ability to use
+		@param champion Champion who will be choosing the ability
+		"""
 		choice = self.interface.ability_select(champion)
 
 		if champion.abilities.has_key(choice):
-			ability = champion.abilities.get(choice)
+
+			if champion.abilities.get(choice).useable():
+				return champion.abilities.get(choice)
+			else:
+				self.interface.error("This ability is on cooldown")
+
 		else:
 			self.interface.error("This is not a valid ability")
-			self.select_ability(champion)
 
-		return ability
+		self.select_ability(champion)
+
 
 	# NPC related functions
 	def npc_turn(self, champion):

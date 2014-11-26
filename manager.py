@@ -1,6 +1,6 @@
 # Manages the gameplay
-from ..environment.list_of_champions import champions
-from ..interface.interface import Interface
+from environment.list_of_champions import champions
+from interface.interface import Interface
 
 def champion_select(interface):
 	"""

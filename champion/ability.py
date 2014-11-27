@@ -47,7 +47,7 @@ class AbilityRawDamage(Ability):
         champion.receive_damage(self.damage)
 
 
-class AbilityDOT(Ability):
+class AbilityOverTime(Ability):
     """
     Deals damage over time
     """
@@ -56,6 +56,10 @@ class AbilityDOT(Ability):
         Ability.__init__(self, name, cooldown)
         self.turns = turns
         self.damage = damage
+
+    def use(self, champion):
+        # This will be executed `self.turns` times
+        champion.receive_damage(self.damage)
 
 
 class AbilityHeal(Ability):

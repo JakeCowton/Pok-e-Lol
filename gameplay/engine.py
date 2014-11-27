@@ -1,6 +1,6 @@
 # engine.pys
 from ability_manager import AbilityManager
-from ..champion.ability import AbilityHeal
+from ..champion.ability import AbilityHeal, AbilityOverTime
 
 class GameEngine(object):
 	"""
@@ -13,7 +13,7 @@ class GameEngine(object):
 		self.user = user
 		self.npc = npc
 		self.turn_count = 0
-		self.ability_manager = AbilityManager()
+		self.ability_manager = AbilityManager(self.interface)
 
 		self.run()
 
@@ -32,7 +32,7 @@ class GameEngine(object):
 
 			else:
 				# NPC
-				print "NPC does stuff"
+				print "-----NPC does stuff-----"
 				self.ability_manager.turn()
 				self.npc_turn(self.npc)
 
@@ -48,14 +48,22 @@ class GameEngine(object):
 		ability = self.select_ability(champion)
 
 		# Ability is activated
+
 		# If ability is a heal, use on self
 		if isinstance(ability, AbilityHeal):
 			ability.use(champion)
+
+		elif isinstance(ability, AbilityOverTime):
+			# Add to the ability manager
+			self.ability_manager.begin_over_time(ability, self.npc)
+			# Use for first time
+			ability.use(self.npc)
 
 		# Otherwise, use on NPC
 		else:
 			ability.use(self.npc)
 		self.interface.attack(champion, ability, self.npc)
+
 
 		# Ability is put on cooldown
 		self.ability_manager.put_on_cd(ability)

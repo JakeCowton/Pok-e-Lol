@@ -1,15 +1,15 @@
 # All abilities available
 
 from ..champion.ability import AbilityRawDamage, \
-							   AbilityDOT, \
+							   AbilityOverTime, \
 							   AbilityHeal
 # Abilities for Ahri
 
 ahri_q = AbilityRawDamage('Orb of Deception',
-				   		  cooldown=1,
+				   		  cooldown=0,
 				   		  damage=10)
 
-ahri_w = AbilityDOT('Foxfire bite',
+ahri_w = AbilityOverTime('Foxfire bite',
 					cooldown=3,
 					turns=3,
 					damage=25)
@@ -25,10 +25,10 @@ ahri_r = AbilityRawDamage('Dash',
 # Abilities for Kata
 
 kata_q = AbilityRawDamage('Bounding Blades',
-						  cooldown=1,
+						  cooldown=0,
 						  damage=8)
 
-kata_w = AbilityDOT('Sinister Steel',
+kata_w = AbilityOverTime('Sinister Steel',
 					cooldown=3,
 					turns=2,
 					damage=35)

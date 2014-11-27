@@ -48,3 +48,10 @@ class Interface(object):
 		sys('clear')
 		print ""
 		print "%s uses %s on %s" % (attacker, ability, atackee)
+
+	def over_time(self, list_item):
+		ability, champion, turns_remaining = list_item
+		print ""
+		print "%s is damaged by %s for %d more turns" % \
+			(champion, ability, turns_remaining)
+		print ""

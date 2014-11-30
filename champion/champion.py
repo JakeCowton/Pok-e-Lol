@@ -5,9 +5,12 @@ class Champion(object):
 
 	def __init__(self, name, abilities, ocean=None):
 		"""
-		@param name The name of the champion
-		@param abilities dict The abilities the champion has
-		@param ocean dict OCEAN score
+		:type name: string
+		:param name: The name of the champion
+		:type abilities: dict {'Q': __, 'W':__, ...}
+		:param abilities: The abilities the champion has
+		:type ocean: dic {'O':__, 'C':__, ...}
+		:param ocean: OCEAN score
 		"""
 		self.name = name
 		self.health = 500
@@ -23,7 +26,8 @@ class Champion(object):
 	def set_abilities(self, abilities):
 		"""
 		Sets the champions abilities
-		@param abilities dict The abilities the champion has
+		:type abilities: dict {'Q': __, 'W':__, ...}
+		:param abilities: The abilities the champion has
 		"""
 		self.abilities = dict()
 
@@ -70,6 +74,7 @@ class Champion(object):
 	def receive_shield(self, shield):
 		"""
 		Gives the champion a shield
-		@param shield How much shield the champion gets
+		:type shield: integer
+		:param shield: How much shield the champion gets
 		"""
 		self.shield += shield

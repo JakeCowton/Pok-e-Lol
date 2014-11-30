@@ -6,8 +6,10 @@ class Ability(object):
 
     def __init__(self, name, cooldown):
         """
-        @param name Name of the ability
-        @param cooldown How many turns ability is on cooldown
+        :type name: string
+        :param name: Name of the ability
+        :type cooldown: integer
+        :param cooldown: How many turns ability is on cooldown
         """
         self.name = name
         self.cooldown = cooldown
@@ -35,14 +37,15 @@ class AbilityRawDamage(Ability):
 
     def __init__(self, name, cooldown, damage):
         """
-        @param damage how much damage the attack does
+        :type damage: integer
+        :param damage: how much damage the attack does
         """
         Ability.__init__(self, name, cooldown)
         self.damage = damage
 
     def use(self, champion):
         """
-        @param champion the champion the attack is being used on
+        :param champion: the champion the attack is being used on
         """
         champion.receive_damage(self.damage)
 

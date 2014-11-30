@@ -11,7 +11,8 @@ class AbilityManager(object):
 
 	def __init__(self, interface):
 		"""
-		@param interface The interface used for outputing data
+		:type interface: Interface object
+		:param interface: The interface used for outputing data
 		"""
 		self.interface = interface
 
@@ -42,7 +43,7 @@ class AbilityManager(object):
 
 		# Remove the abilities queued for removal
 		for ability in queue_for_ot_removal:
-			self.end_over_times(ability)
+			self.end_over_time(ability)
 
 
 		# Manage cooldowns
@@ -66,7 +67,8 @@ class AbilityManager(object):
 	def put_on_cd(self, ability):
 		"""
 		Put an ability on cooldown
-		@param ability Ability object
+		:type ability: Ability object
+		:param ability: The ability to put on cooldown
 		"""
 		# Add it to the list of abilties on cooldown
 		self.abilities_on_cd.append([ability, ability.cooldown + 1])
@@ -76,7 +78,8 @@ class AbilityManager(object):
 	def take_off_cd(self, ability):
 		"""
 		Take an ability off cooldown
-		@param ability Ability object
+		:type ability: Ability object
+		:param ability: The ability to take of cooldown
 		"""
 		# Take the ability off cooldown
 		self.abilities_on_cd.remove(ability)
@@ -86,10 +89,23 @@ class AbilityManager(object):
 
 	# Over time specific functions
 	def begin_over_time(self, ability, champion):
+		"""
+		Add an ability to the list of abilities actively doing something over
+		time
+		:type ability: Ability object
+		:param ability: The ability being added to the list
+		:type champion: Champion object
+		:param champion: The champion the ability is being used on
+		"""
 		# Add to the over time list
 		# turns - 1 as 1 hit has already been dealt
 		self.abilities_over_time.append([ability, champion, (ability.turns - 1)])
 
-	def end_over_times(self, ability):
+	def end_over_time(self, ability):
+		"""
+		End an ability that is doing something over time
+		:type ability: Ability object
+		:param ability: The ability to end
+		"""
 		# Stop the ability from do its over time affects
 		self.abilities_over_time.remove(ability)

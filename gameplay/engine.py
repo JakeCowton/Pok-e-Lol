@@ -41,8 +41,9 @@ class GameEngine(object):
     # User related functions
     def user_turn(self, champion):
         """
-        One turn
-        @oaram champion The champion object whose turn it is
+        One turn for a user
+        :type champion: Champion object
+        :param champion: The champion object whose turn it is
         """
         # Select an ability
         ability = None
@@ -77,7 +78,8 @@ class GameEngine(object):
     def select_ability(self, champion):
         """
         Gets a champion to choose an ability to use
-        @param champion Champion who will be choosing the ability
+        :type champion: Champion object
+        :param champion Champion who will be choosing the ability
         """
         choice = self.interface.ability_select(champion)
 
@@ -94,5 +96,10 @@ class GameEngine(object):
 
     # NPC related functions
     def npc_turn(self, champion):
+        """
+        One turn for an NPC
+        :type champion: Champion object
+        :param champion: The champion whose turn it is
+        """
         # Do NPC stuff
         self.turn_count += 1

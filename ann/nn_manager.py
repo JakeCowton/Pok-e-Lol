@@ -19,6 +19,17 @@ def create_nn(data):
 	:param data: Training data for the network
 	:returns: A trained NN object
 	"""
-	ann = NN(n_ins, n_hidden, n_outs)
+	ann = NN(6,3,3)
 	_train(ann, data)
 	return ann
+
+def call_nn(nn, data):
+	"""
+	:type nn: NN object
+	:param nn: The neural network
+	:type data: array
+	:param data: The input vars for the network
+	:rtype: array
+	:returns: The output layer
+	"""
+	return nn.feed_forward(data)

@@ -1,6 +1,7 @@
 # engine.pys
 from ability_manager import AbilityManager
 from ..champion.ability import AbilityHeal, AbilityOverTime
+from .npc import NPCManager
 
 class GameEngine(object):
     """
@@ -12,6 +13,7 @@ class GameEngine(object):
         self.interface = interface
         self.user = user
         self.npc = npc
+        self.npc_manager = NPCManager(self.npc, self.user)
         self.turn_count = 0
         self.ability_manager = AbilityManager(self.interface)
 
@@ -102,5 +104,5 @@ class GameEngine(object):
         :type champion: Champion object
         :param champion: The champion whose turn it is
         """
-        # Do NPC stuff
+        print self.npc_manager.choose_attack()
         self.turn_count += 1

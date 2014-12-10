@@ -1,16 +1,25 @@
-from ..environment import training_data
 
-class NPC(object):
+from numpy import array
+from ..environment import training_data
+from ..ann.nn_manager import create_nn, call_nn
+
+class NPCManager(object):
 	""" Controls the NPCs actions """
 
-	def __init__(self, champion):
+	def __init__(self, npc, user):
+		# Store vars
 		data = None
-		self.champion = champion
-		if champion.name.upper() == 'AHRI':
+		self.npc = npc
+		self.user = user
+
+		data = None
+		# Get training data
+		if npc.name.upper() == 'AHRI':
 			self.name = 'Ahri'
 			data = training_data.get_ahri()
-		# Get the nerual networked trained to the champion
-		self.nn = create_nn(self.data)
+
+		# Get the nerual networked trained to the npc
+		self.nn = create_nn(data)
 
 	def __repr__(self):
 		return self.name
@@ -22,9 +31,31 @@ class NPC(object):
 		"""
 		Use the SLP to calculate whether to attack or defenc
 		"""
+		pass
 
 	def choose_attack(self):
-		pass
+		"""
+		Use the NN to choose an attack
+		"""
+		inputs = array([
+			self.user.health,
+			self.npc.abilities['R'],
+			self.npc.abilities['R'].useable(),
+			self.npc.abilities['W'],
+			self.npc.abilities['W'].useable(),
+			self.npc.abilities['Q'],
+		 ])
+		outputs = call_nn(self.nn, inputs)
+		# Emotional stuff here
+		choice = None, None
+		if outputs[0] > choice[1]:
+			choice = 'R', outputs[0]
+		if outputs[1] > choice[1]:
+			choice = 'W', outputs[1]
+		if outputs[2] > choice[1]:
+			choice = 'Q', outputs[2]
+
+		return choice[0]
 
 	def choose_defence(self):
 		pass

@@ -58,7 +58,10 @@ class NN(object):
 		"""
 
 		# Set the input layer to equal data (-1 to keep the bias as 1)
-		self.layers[0][0:-1] = data
+		try:
+			self.layers[0][0:-1] = data
+		except TypeError:
+			from ipdb import set_trace; set_trace()
 
 		for i in range(1, self.no_of_layers):
 			# Feed the data forward using `np.dot`

@@ -104,5 +104,37 @@ class GameEngine(object):
         :type champion: Champion object
         :param champion: The champion whose turn it is
         """
-        print self.npc_manager.choose_attack()
+        # Choose dttack or defend
+        # if attack:
+        ability = None
+        while not ability:
+            ability = self.npc_manager.choose_attack()
+            if not self.npc.abilities.has_key(ability) and \
+              not self.npc.abilities.get(ability).useable():
+                ability = None
+            else:
+                ability = self.npc.abilities.get(ability)
+
+        # If ability is a heal, use on self
+        if isinstance(ability, AbilityHeal):
+            ability.use(champion)
+
+        # If ability is an over time use on user and add to m
+        elif isinstance(ability, AbilityOverTime):
+            # Add to the ability manager
+            self.ability_manager.begin_over_time(ability, self.user)
+            # Use for first time
+            ability.use(self.user)
+
+        # Otherwise, use on user
+        else:
+            ability.use(self.user)
+
+        # Print what the attack used
+        self.interface.attack(champion, ability, self.user)
+
+        # Ability is put on cooldown
+        self.ability_manager.put_on_cd(ability)
+
+        # Increment the turn counter
         self.turn_count += 1

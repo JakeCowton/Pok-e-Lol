@@ -36,14 +36,16 @@ class NPCManager(object):
 	def choose_attack(self):
 		"""
 		Use the NN to choose an attack
+		:rtpye: char
+		:returns: The attack ability to use
 		"""
 		inputs = array([
-			self.user.health,
-			self.npc.abilities['R'],
-			self.npc.abilities['R'].useable(),
-			self.npc.abilities['W'],
-			self.npc.abilities['W'].useable(),
-			self.npc.abilities['Q'],
+			float(self.user.health),
+			float(self.npc.abilities['R'].damage),
+			float(self.npc.abilities['R'].useable()),
+			float(self.npc.abilities['W'].damage),
+			float(self.npc.abilities['W'].useable()),
+			float(self.npc.abilities['Q'].damage)
 		 ])
 		outputs = call_nn(self.nn, inputs)
 		# Emotional stuff here

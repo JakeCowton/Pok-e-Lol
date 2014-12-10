@@ -28,6 +28,8 @@ def _train(p, data):
     Trains the perceptron
     :param p: The perceptron to train
     :param data: The data to train it with
+    :rtype: SLP()
+    :returns: trained perceptron
     """
 
     # Normalise the data
@@ -72,10 +74,22 @@ def create_slp(ins, data):
     Create the SLP
     :param ins: number of inputs
     :param data: training data
+    :rtype: SLP()
+    :returns: Trained perceptron
     """
     # Create the perceptron
-    p = SLP(ins)
-
+    p = SLP(6)
+    # Train the perceptron
     _train(p, data)
 
     return p
+
+def call_SLP(p, inputs):
+    """
+    Use the SLP to get outputs from `inputs`
+    :param p: perceptron
+    :param inputs: intputs
+    :rtype: string
+    :returns: 'attack' or 'defend'
+    """
+    return p.recall(inputs)

@@ -46,4 +46,4 @@ class SLP(object):
         res = self.result(inputs)
         if res > 0.5:return 'defend'
         elif res <= 0.5: return 'attack'
-        else: return 'FAIL'
+        else: return False

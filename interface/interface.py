@@ -60,3 +60,21 @@ class Interface(object):
 		print "%s is damaged by %s for %d more turns" % \
 			(champion, ability, turns_remaining)
 		print ""
+
+	def game_over(self, user, npc):
+		"""
+		Someone has died
+		:type user: Champion()
+		:param user: The user object
+		:type npc: Champion()
+		:param npc: The npc object
+		"""
+		sys('clear')
+		print "The game is over"
+		# set any sub zero healths to 0
+		if user.health <= 0:
+			user.health = 0
+		if npc.health <=0:
+			npc.health = 0
+		print "The user has %d health" % user.health
+		print "The npc has %d health" % npc.health

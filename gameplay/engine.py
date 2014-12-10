@@ -36,6 +36,7 @@ class GameEngine(object):
                 self.ability_manager.turn()
                 self.npc_turn(self.npc)
 
+        self.interface.game_over(user=self.user, npc=self.npc)
 
 
     # User related functions

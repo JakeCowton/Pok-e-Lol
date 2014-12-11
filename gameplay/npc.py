@@ -50,14 +50,28 @@ class NPCManager(object):
 		outputs = call_nn(self.nn, inputs)
 		# Emotional stuff here
 		choice = None, None
-		if outputs[0] > choice[1]:
+		if outputs[0] > choice[1] and self._test('R'):
 			choice = 'R', outputs[0]
-		if outputs[1] > choice[1]:
+		if outputs[1] > choice[1] and self._test('W'):
 			choice = 'W', outputs[1]
-		if outputs[2] > choice[1]:
+		if outputs[2] > choice[1] and self._test('Q'):
 			choice = 'Q', outputs[2]
 
 		return choice[0]
+
+	def _test(self, key):
+		"""
+		Tests if the key is valid and available
+		:type key: char
+		:param key: Q, W, E, R
+		:rtype: bool
+		:returns: If the key is valid and available
+		"""
+		if self.npc.abilities.has_key(key) and \
+			self.npc.abilities.get(key).useable():
+			return True
+		else:
+			return False
 
 	def choose_defence(self):
 		pass

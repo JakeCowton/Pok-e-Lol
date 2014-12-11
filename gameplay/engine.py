@@ -110,7 +110,7 @@ class GameEngine(object):
         ability = None
         while not ability:
             ability = self.npc_manager.choose_attack()
-            if not self.npc.abilities.has_key(ability) and \
+            if not self.npc.abilities.has_key(ability) or \
               not self.npc.abilities.get(ability).useable():
                 ability = None
             else:

@@ -34,9 +34,10 @@ class GameEngine(object):
 
             else:
                 # NPC
-                print "-----NPC does stuff-----"
-                self.ability_manager.turn()
                 self.npc_turn(self.npc)
+
+                # Do the ability_management stuff
+                self.ability_manager.turn()
 
         self.interface.game_over(user=self.user, npc=self.npc)
 

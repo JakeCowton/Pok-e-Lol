@@ -38,6 +38,7 @@ class Interface(object):
 				print "%s - %s" % (key, ability)
 		print "\n"
 		ability = raw_input("Choose: Q, W, E or R - ")
+		sys('clear')
 
 		return ability.upper()
 
@@ -45,9 +46,13 @@ class Interface(object):
 		print message
 
 	def attack(self, attacker, ability, atackee):
-		sys('clear')
 		print ""
-		print "%s uses %s on %s" % (attacker, ability, atackee)
+		try:
+			# Show the damage dealt
+			print "%s uses %s on %s - %d damage" % (attacker, ability, atackee, ability.damage)
+		except AttributeError:
+			# These will be heals as they have no damage
+			print "%s uses %s on %s" % (attacker, ability, atackee)
 
 	def over_time(self, list_item):
 		"""
@@ -57,8 +62,8 @@ class Interface(object):
 		"""
 		ability, champion, turns_remaining = list_item
 		print ""
-		print "%s is damaged by %s for %d more turns" % \
-			(champion, ability, turns_remaining)
+		print "%s is damaged by %s for %d more turns - %d damage" % \
+			(champion, ability, turns_remaining, ability.damage)
 		print ""
 
 	def game_over(self, user, npc):

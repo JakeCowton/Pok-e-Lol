@@ -19,7 +19,8 @@ def _normalise(data):
         entry_list = []
         for value in entry[0]:
             # Normalise the data. 1/255 ~ 0.003921568
-            entry_list.append(float(value*0.003921568))
+            # entry_list.append(float(value*0.003921568))
+            pass
         temp_list.append([entry_list, entry[1]])
     return temp_list
 

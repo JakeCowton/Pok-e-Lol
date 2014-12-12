@@ -62,7 +62,7 @@ class GameEngine(object):
 
         elif isinstance(ability, AbilityOverTime):
             # Add to the ability manager
-            self.ability_manager.begin_over_time(ability, self.npc)
+            self.ability_manager.begin_over_time(ability, self.npc, self.user)
             # Use for first time
             ability.use(self.npc)
 
@@ -123,7 +123,7 @@ class GameEngine(object):
         # If ability is an over time use on user and add to m
         elif isinstance(ability, AbilityOverTime):
             # Add to the ability manager
-            self.ability_manager.begin_over_time(ability, self.user)
+            self.ability_manager.begin_over_time(ability, self.user, self.npc)
             # Use for first time
             ability.use(self.user)
 

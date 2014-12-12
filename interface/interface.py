@@ -60,10 +60,10 @@ class Interface(object):
 		:type list_item: list
 		:param list_item: A list item from AbilityManager.abilities_over_time
 		"""
-		ability, champion, turns_remaining = list_item
+		ability, receiver, turns_remaining, giver = list_item
 		print ""
-		print "%s is damaged by %s for %d more turns - %d damage" % \
-			(champion, ability, turns_remaining, ability.damage)
+		print "%s is damaged by %s's %s for %d more turns - %d damage" % \
+			(receiver, giver, ability, turns_remaining, ability.damage)
 		print ""
 
 	def game_over(self, user, npc):

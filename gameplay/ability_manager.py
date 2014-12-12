@@ -4,7 +4,7 @@ class AbilityManager(object):
 	"""
 	Manages ability cooldowns and damage over time
 	"""
-	# [[ability, champion, turns_remaining]...]
+	# [[ability, receiver, turns_remaining]...]
 	abilities_over_time = []
 	# [[ability, turns_remaining]...]
 	abilities_on_cd = []
@@ -88,18 +88,20 @@ class AbilityManager(object):
 
 
 	# Over time specific functions
-	def begin_over_time(self, ability, champion):
+	def begin_over_time(self, ability, receiver, giver):
 		"""
 		Add an ability to the list of abilities actively doing something over
 		time
 		:type ability: Ability object
 		:param ability: The ability being added to the list
-		:type champion: Champion object
-		:param champion: The champion the ability is being used on
+		:type receiver: champion object
+		:param receiver: The champion the ability is being used on
+		:type giver: champion object
+		:param giver: The champion using the ability
 		"""
 		# Add to the over time list
 		# turns - 1 as 1 hit has already been dealt
-		self.abilities_over_time.append([ability, champion, (ability.turns - 1)])
+		self.abilities_over_time.append([ability, receiver, (ability.turns - 1), giver])
 
 	def end_over_time(self, ability):
 		"""

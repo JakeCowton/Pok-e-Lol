@@ -29,19 +29,10 @@ class Champion(object):
 		:type abilities: dict {'Q': __, 'W':__, ...}
 		:param abilities: The abilities the champion has
 		"""
-		self.abilities = dict()
-
-		# Set the Q ability
-		self.abilities['Q'] = abilities.get('Q')
-
-		# Set the W ability
-		self.abilities['W'] = abilities.get('W')
-
-		# Set the E ability
-		self.abilities['E'] = abilities.get('E')
-
-		# Set the R ability
-		self.abilities['R'] = abilities.get('R')
+		self.abilities = dict(Q=abilities.get('Q'),
+							  W=abilities.get('W'),
+							  E=abilities.get('E'),
+							  R=abilities.get('R'))
 
 	def receive_heal(self, health):
 		"""

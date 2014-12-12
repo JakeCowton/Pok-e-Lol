@@ -1,7 +1,9 @@
 
 from numpy import array
 from ..environment import nn_training_data
+from ..environment.slp_training_data import slp_t_data
 from ..ann.nn_manager import create_nn, call_nn
+from ..slp.slp_manager import create_slp, call_slp
 
 class NPCManager(object):
 	""" Controls the NPCs actions """
@@ -20,6 +22,7 @@ class NPCManager(object):
 
 		# Get the nerual networked trained to the npc
 		self.nn = create_nn(data)
+		self.slp = create_slp(slp_t_data)
 
 	def __repr__(self):
 		return self.name
@@ -27,11 +30,11 @@ class NPCManager(object):
 	def __str__(self):
 		return self.name
 
-	def attack_or_defend(self):
+	def attack_or_defend(self, inputs):
 		"""
 		Use the SLP to calculate whether to attack or defenc
 		"""
-		pass
+		return call_slp(self.slp, inputs)
 
 	def choose_attack(self):
 		"""

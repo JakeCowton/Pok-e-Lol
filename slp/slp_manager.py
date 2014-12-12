@@ -6,23 +6,20 @@ LMSE = 0.001
 
 def _normalise(data):
     """
-    Turn data into values between 0 and 1
-    :param data: list of lists of input data and output e.g.
-        [
-            [[in1, in2, ...], out],
-            ...
-        ]
-    :returns: Normalised training data
+    Normalises raw input data
+    :type data: List
+    :param data: The input data
+    :rtype: List
+    :returns: Normalised data
     """
-    temp_list = []
-    for entry in data:
-        entry_list = []
-        for value in entry[0]:
-            # Normalise the data. 1/255 ~ 0.003921568
-            # entry_list.append(float(value*0.003921568))
-            pass
-        temp_list.append([entry_list, entry[1]])
-    return temp_list
+    npc_health, user_health, avr_dam_taken, avr_dam_given = data
+
+    npc_health = float(npc_health) / 500.0
+    user_health = float(user_health) / 500.0
+    avr_dam_taken = float(avr_dam_taken) / 500.0
+    avr_dam_given = float(avr_dam_given) / 500.0
+
+    return [npc_health, user_health, avr_dam_taken, avr_dam_given]
 
 def _train(p, data):
     """
@@ -32,10 +29,6 @@ def _train(p, data):
     :rtype: SLP()
     :returns: trained perceptron
     """
-
-    # Normalise the data
-    training_data = _normalise(data)
-
     # Number of full iterations
     epochs = 0
 
@@ -48,7 +41,7 @@ def _train(p, data):
         error = 0
 
         # For each set in the training_data
-        for value in training_data:
+        for value in data:
 
             # Calculate the result
             output = p.result(value[0])
@@ -63,17 +56,16 @@ def _train(p, data):
             p.weight_adjustment(value[0], iter_error)
 
         # Calculate the MSE - epoch error / number of sets
-        mse = float(error/len(training_data))
+        mse = float(error/len(data))
 
         # Increment the epoch number
         epochs += 1
 
     return p
 
-def create_slp(ins, data):
+def create_slp(data):
     """
     Create the SLP
-    :param ins: number of inputs
     :param data: training data
     :rtype: SLP()
     :returns: Trained perceptron
@@ -85,12 +77,13 @@ def create_slp(ins, data):
 
     return p
 
-def call_SLP(p, inputs):
+def call_slp(p, inputs):
     """
     Use the SLP to get outputs from `inputs`
     :param p: perceptron
-    :param inputs: intputs
+    :param inputs: npc health, user health, avr damage taken, avr damage given
     :rtype: string
     :returns: 'attack' or 'defend'
     """
+    inputs = _normalise(inputs)
     return p.recall(inputs)

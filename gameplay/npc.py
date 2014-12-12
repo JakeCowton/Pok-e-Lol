@@ -77,4 +77,11 @@ class NPCManager(object):
 			return False
 
 	def choose_defence(self):
-		pass
+		"""
+		Select a defensive tactic
+		:rtype: Ability()
+		:returns: ability to use
+		"""
+		ability = self.npc.abilities.get('E')
+		if ability.useable(): return 'E'
+		return None

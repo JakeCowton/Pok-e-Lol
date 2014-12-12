@@ -112,16 +112,15 @@ class GameEngine(object):
                                                     avr_dmg_taken,
                                                     avr_dmg_given
                                                     ])
-
-
         ability = None
         while not ability:
 
             if a_or_d == 'attack':
                 ability = self.npc_manager.choose_attack()
             elif a_or_d == 'defend':
-                # ability = self.npc_manager.choose_defence()
-                pass
+                ability = self.npc_manager.choose_defence()
+                if not ability:
+                    ability = self.npc_manager.choose_attack()
             else:
                 raise KeyError
 

@@ -3,19 +3,27 @@
 class Champion(object):
 	"""A class to define a champion"""
 
-	def __init__(self, name, abilities, ocean=None):
+	def __init__(self, name, abilities, ocean):
 		"""
 		:type name: string
 		:param name: The name of the champion
 		:type abilities: dict {'Q': __, 'W':__, ...}
 		:param abilities: The abilities the champion has
-		:type ocean: dic {'O':__, 'C':__, ...}
+		:type ocean: dict {'O':__, 'C':__, ...}
 		:param ocean: OCEAN score
 		"""
 		self.name = name
 		self.health = 500
 		# self.shield = 0
 		self.set_abilities(abilities)
+		self.ocean = dict(O=ocean.get('O'),
+						  C=ocean.get('C'),
+						  E=ocean.get('E'),
+						  A=ocean.get('A'),
+						  N=ocean.get('N'))
+		# A lower value means the NPC is less likely to do what
+		# the neural networks says
+		self.logic = 1
 
 	def __repr__(self):
 		return self.name
@@ -69,3 +77,9 @@ class Champion(object):
 		:param shield: How much shield the champion gets
 		"""
 		self.shield += shield
+
+	def set_emotions(self):
+		"""
+		Use `self.ocean` to calculate `self.logic`
+		"""
+		self.logic = self.ocean.get('O')

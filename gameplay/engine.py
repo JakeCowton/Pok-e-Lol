@@ -106,11 +106,9 @@ class GameEngine(object):
         :param champion: The champion whose turn it is
         """
         # Choose dttack or defend
-        avr_dmg_given, avr_dmg_taken = self.calc_stats_for_slp()
+        # avr_dmg_given, avr_dmg_taken = self.calc_stats_for_slp()
         a_or_d = self.npc_manager.attack_or_defend([self.npc.health,
-                                                    self.user.health,
-                                                    avr_dmg_taken,
-                                                    avr_dmg_given
+                                                    self.user.health
                                                     ])
         ability = None
         while not ability:
@@ -155,9 +153,9 @@ class GameEngine(object):
         # Increment the turn counter
         self.turn_count += 1
 
-    def calc_stats_for_slp(self):
-        npc_avr_damage_given = float((500 - self.user.health) / self.turn_count)
-        npc_avr_damage_taken = float((500 - self.npc.health) / self.turn_count)
+    # def calc_stats_for_slp(self):
+    #     npc_avr_damage_given = float((500 - self.user.health) / self.turn_count)
+    #     npc_avr_damage_taken = float((500 - self.npc.health) / self.turn_count)
 
-        return npc_avr_damage_given, npc_avr_damage_taken
+    #     return npc_avr_damage_given, npc_avr_damage_taken
 

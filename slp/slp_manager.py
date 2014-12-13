@@ -12,14 +12,14 @@ def _normalise(data):
     :rtype: List
     :returns: Normalised data
     """
-    npc_health, user_health, avr_dam_taken, avr_dam_given = data
+    npc_health, user_health = data# , avr_dam_taken, avr_dam_given = data
 
     npc_health = float(npc_health) / 500.0
     user_health = float(user_health) / 500.0
-    avr_dam_taken = float(avr_dam_taken) / 500.0
-    avr_dam_given = float(avr_dam_given) / 500.0
+    # avr_dam_taken = float(avr_dam_taken) / 500.0
+    # avr_dam_given = float(avr_dam_given) / 500.0
 
-    return [npc_health, user_health, avr_dam_taken, avr_dam_given]
+    return [npc_health, user_health]
 
 def _train(p, data):
     """
@@ -71,7 +71,7 @@ def create_slp(data):
     :returns: Trained perceptron
     """
     # Create the perceptron
-    p = SLP(6)
+    p = SLP(2)
     # Train the perceptron
     _train(p, data)
 

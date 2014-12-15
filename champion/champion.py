@@ -82,4 +82,4 @@ class Champion(object):
 		"""
 		Use `self.ocean` to calculate `self.logic`
 		"""
-		self.logic = self.ocean.get('O')
+		self.logic = self.ocean.get('O') - (self.ocean.get('C') + self.ocean.get('A'))

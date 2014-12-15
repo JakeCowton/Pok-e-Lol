@@ -23,7 +23,7 @@ This document will outline what will be achieved by the AI assignment
 ## Game play
 
 Each turn will have the user select an ability which will then take effect and be put on cooldown.
-Some abilities have an 'over time' effect (usually the **W**) meaning they might heal or damage a champion (themself or another) over several turns from one usage.
+Some abilities have an 'over time' effect (usually the **W**) meaning they might heal or damage a champion (them self or another) over several turns from one usage.
 
 ### Abilities
 
@@ -137,31 +137,40 @@ Each champion will get a score for each of the components of OCEAN. These will b
 
 #### Openness
 
-Scores here are directly proportional to randomness factor. This will mean a high score for openness will make it more likely for the NPC to do something random as opposed to what the calculations have suggested.
+Scores here are inversely proportional to logic.
+High score = less logic.
 
 #### Conscientiousness
 
-Scores here are inversely proportional to randomness factor. High scores here will result in the NPC being more likely to do what the calculations suggest.
+Scores here are directly proportional to logic.
+High score = more logic
 
 #### Extroversion
 
 Will be more likely to take a quick solution than the best solution.
 E.g. It might calculate attack or defend, but will take a random guess after that.
 
+EDIT: Take SLP finding as fact **but** use logic value for MLP
+
 #### Agreeableness
 
-Not sure.
+More likely to go with what is suggested.
+High score = more logic
 
 #### Neuroticism
 
-High scores here will mean the randomness factor increases each time damage is received.
+High scores here will mean the logic decreases each time damage is received.
+Causes a decay in logic per damage taken
 
 
 ### Fuzzy Inference System
 
-This will be used to manage the emotions.
-E.g. If openness is high and conscientiousness is low then random factor is high.
+This will be used to manage how emotions affect decision making.
+E.g:
 
+- If logic is high - Do what is suggested
+- If it is medium - Distort the MLP decision
+- If it is low - Distort the MLP decision even more
 
 ## Further Development (If time permits)
 

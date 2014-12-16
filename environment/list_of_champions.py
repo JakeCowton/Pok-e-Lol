@@ -1,7 +1,7 @@
 # All cahmpions available
 
 from ..champion.champion import Champion
-from list_of_abilities import *
+from .list_of_abilities import *
 
 ahri = Champion('Ahri',
 				abilities={

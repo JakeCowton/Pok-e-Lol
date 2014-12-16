@@ -1,7 +1,7 @@
 # Gives access to the NN
 
 import numpy as np
-from nn import NN
+from .nn import NN
 
 def _train(net, data, epochs=10000, lr=0.1, momentum=0.1):
 	"""

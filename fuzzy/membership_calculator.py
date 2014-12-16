@@ -1,4 +1,4 @@
-from slope_calculator import down_slope, up_slope
+from .slope_calculator import down_slope, up_slope
 
 def membership_for_high(x):
     """

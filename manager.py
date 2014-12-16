@@ -1,8 +1,8 @@
 # Manages the gameplay
 from numpy.random import randint
-from environment.list_of_champions import champions
-from interface.interface import Interface
-from gameplay.engine import GameEngine
+from .environment.list_of_champions import champions
+from .interface.interface import Interface
+from .gameplay.engine import GameEngine
 
 def champion_select(interface):
     """

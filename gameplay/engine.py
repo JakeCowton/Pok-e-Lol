@@ -1,7 +1,7 @@
 # engine.pys
 
 from numpy.random import choice
-from ability_manager import AbilityManager
+from .ability_manager import AbilityManager
 from ..champion.ability import AbilityHeal, AbilityOverTime
 from .npc import NPCManager
 

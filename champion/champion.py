@@ -51,10 +51,9 @@ class Champion(object):
 		"""
 
 		self.health -= damage
-		try:
-			self.logic -= self.logic_degrader
-		except AttributeError:
-			pass
+
+		# This only affects an NPC
+		self.logic -= self.logic_degrader
 
 		# # If the shield can take all the damage
 		# if shield >= damage:

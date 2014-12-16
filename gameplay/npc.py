@@ -4,6 +4,7 @@ from ..environment import nn_training_data
 from ..environment.slp_training_data import slp_t_data
 from ..ann.nn_manager import create_nn, call_nn
 from ..slp.slp_manager import create_slp, call_slp
+from ..fuzzy.membership_calculator import find_membership
 
 class NPCManager(object):
 	""" Controls the NPCs actions """
@@ -24,11 +25,45 @@ class NPCManager(object):
 		self.nn = create_nn(data)
 		self.slp = create_slp(slp_t_data)
 
+		# Set the emotions of the NPC
+		self.set_emotions()
+
 	def __repr__(self):
 		return self.name
 
 	def __str__(self):
 		return self.name
+
+	def set_emotions(self):
+		"""
+		Use emotions to calculate variables
+		"""
+		# Use a combination of whether O, C and A are high or low to determine
+		# logic follows the majority of the 3 (O is inverse)
+		logic_calc_inputs = [
+			find_membership(self.npc.ocean.get('O'), direct=False),
+			find_membership(self.npc.ocean.get('C')),
+			find_membership(self.npc.ocean.get('A'))
+			]
+
+		# Count occurences of high and low in logic_calc_inputs
+		if logic_calc_inputs.count('HIGH') == 2:
+			# Set logic at the highest value
+			self.npc.logic = 1.0
+		elif logic_calc_inputs.count('LOW') == 2:
+			# Set logic to the low value
+			self.npc.logic = 0.5
+		else:
+			raise ValueError
+
+		# Calculate if `E` is high or low
+
+
+		# N will cause the degradtion of L
+			# If N is high: degradtion is fast
+			# If N is low: degradtion is slow
+
+	# ---------- Decisions functions ------------
 
 	def attack_or_defend(self, inputs):
 		"""

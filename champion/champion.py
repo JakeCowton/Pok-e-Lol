@@ -1,4 +1,5 @@
 # champion.py
+from ..fuzzy.membership_calculator import find_membership
 
 class Champion(object):
 	"""A class to define a champion"""
@@ -17,10 +18,9 @@ class Champion(object):
 		# self.shield = 0
 		self.set_abilities(abilities)
 		self.ocean = ocean
+		self.set_emotions()
 		# A lower value means the NPC is less likely to do what
 		# the neural networks says
-		self.logic = 1
-
 	def __repr__(self):
 		return self.name
 
@@ -76,14 +76,26 @@ class Champion(object):
 
 	def set_emotions(self):
 		"""
-		Use `self.ocean` to calculate `self.logic`
+		Use emotions to calculate variables
 		"""
 		# Use a combination of whether O, C and A are high or low to determine
-			# If 2 are high: L is high
-			# If 2 are low: L is low
+		# logic follows the majority of the 3 (O is inverse)
+		from ipdb import set_trace; set_trace()
+		logic_calc_inputs = [
+			find_membership(self.ocean.get('O'), direct=False),
+			find_membership(self.ocean.get('C')),
+			find_membership(self.ocean.get('A'))
+			]
 
-			# Magic will be required for this as `O` is inversely proportional
-			# to `L`
+		# Count occurences of high and low in logic_calc_inputs
+		if logic_calc_inputs.count('HIGH') == 2:
+			# Set logic at the highest value
+			self.logic = 1.0
+		elif logic_calc_inputs.count('LOW') == 2:
+			# Set logic to the low value
+			self.logic = 0.5
+		else:
+			raise ValueError
 
 		# Calculate if `E` is high or low
 

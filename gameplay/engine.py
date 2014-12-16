@@ -135,13 +135,8 @@ class GameEngine(object):
 
         # If they are an extrovert, take a random ability
         else:
-            # Create a dictionary of available abilities
-            available_abilities = {}
-            for key, ability in self.npc.abilities.iteritems():
-                if ability.useable():
-                    available_abilities[key] = ability
-
             # Choose a random ability from the list of available abilities
+            available_abilities = self.npc.get_available_abilities()
             ability = available_abilities.get(choice(available_abilities.keys()))
 
 

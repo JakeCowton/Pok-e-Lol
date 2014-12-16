@@ -39,6 +39,19 @@ class Champion(object):
 							  E=abilities.get('E'),
 							  R=abilities.get('R'))
 
+	def get_available_abilities(self):
+		"""
+		Get the available abilities
+		:rtype: dict
+		:returns: Abilities not on cooldown
+		"""
+		available_abilities = {}
+		for key, ability in self.abilities.iteritems():
+			if ability.useable():
+				available_abilities[key] = ability
+
+		return available_abilities
+
 	def receive_heal(self, health):
 		"""
 		Champion has been given health

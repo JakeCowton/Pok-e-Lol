@@ -173,9 +173,7 @@ Causes a decay in logic per damage taken
 This will be used to manage how emotions affect decision making.
 E.g:
 
-- If logic is high - Do what is suggested
-- If it is medium - Distort the MLP decision
-- If it is low - Distort the MLP decision even more
+Each of the 5 OCEAN emotions will be ranked low or high and from this calculations will be made to let these fuzzy values affect decision making.
 
 ## Further Development (If time permits)
 

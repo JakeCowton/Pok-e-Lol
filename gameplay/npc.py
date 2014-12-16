@@ -63,7 +63,7 @@ class NPCManager(object):
 		# N will cause the degradtion of L
 			# If N is high: degradtion 0.3
 			# If N is low: degradtion 0.1
-		if find_membership(self.npc.ocean.get('N'))  is 'HIGH':
+		if find_membership(self.npc.ocean.get('N'))  == 'HIGH':
 			self.npc.logic_degrader = 0.03
 		else:
 			self.npc.logic_degrader = 0.01

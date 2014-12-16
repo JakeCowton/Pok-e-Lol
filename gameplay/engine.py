@@ -113,8 +113,10 @@ class GameEngine(object):
                                                     self.user.health
                                                     ])
         ability = None
+        available_abilities = self.npc.get_available_abilities()
+
         # If NPC is not an extrovert use the NN to choose ability
-        if self.npc.extroversion.upper() is 'LOW':
+        if self.npc.extroversion.upper() == 'LOW':
             while not ability:
 
                 if a_or_d.upper() == 'ATTACK':
@@ -133,10 +135,14 @@ class GameEngine(object):
                 else:
                     ability = self.npc.abilities.get(ability)
 
+            # USE `logic` TO DETERMINE WHETHER TO TAKE THIS
+            options = [ability, available_abilities.get(choice(available_abilities.keys()))]
+            probabilities = [self.npc.logic, (1.0-self.npc.logic)]
+            ability = choice(options, p=probabilities)
+
         # If they are an extrovert, take a random ability
         else:
             # Choose a random ability from the list of available abilities
-            available_abilities = self.npc.get_available_abilities()
             ability = available_abilities.get(choice(available_abilities.keys()))
 
 

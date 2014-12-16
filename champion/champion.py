@@ -16,11 +16,7 @@ class Champion(object):
 		self.health = 500
 		# self.shield = 0
 		self.set_abilities(abilities)
-		self.ocean = dict(O=ocean.get('O'),
-						  C=ocean.get('C'),
-						  E=ocean.get('E'),
-						  A=ocean.get('A'),
-						  N=ocean.get('N'))
+		self.ocean = ocean
 		# A lower value means the NPC is less likely to do what
 		# the neural networks says
 		self.logic = 1
@@ -82,4 +78,15 @@ class Champion(object):
 		"""
 		Use `self.ocean` to calculate `self.logic`
 		"""
-		self.logic = self.ocean.get('O') - (self.ocean.get('C') + self.ocean.get('A'))
+		# Use a combination of whether O, C and A are high or low to determine
+			# If 2 are high: L is high
+			# If 2 are low: L is low
+
+			# Magic will be required for this as `O` is inversely proportional
+			# to `L`
+
+		# Calculate if `E` is high or low
+
+		# N will cause the degradtion of L
+			# If N is high: degradtion is fast
+			# If N is low: degradtion is slow

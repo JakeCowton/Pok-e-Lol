@@ -138,12 +138,14 @@ Each champion will get a score for each of the components of OCEAN. These will b
 #### Openness
 
 Scores here are inversely proportional to logic.
-High score = less logic.
+High score = low logic
+Low score = high logic
 
 #### Conscientiousness
 
 Scores here are directly proportional to logic.
-High score = more logic
+High score = high logic
+Low score = low logic
 
 #### Extroversion
 
@@ -155,7 +157,8 @@ EDIT: Take SLP finding as fact **but** use logic value for MLP
 #### Agreeableness
 
 More likely to go with what is suggested.
-High score = more logic
+High score = high logic
+Low score = low logic
 
 #### Neuroticism
 

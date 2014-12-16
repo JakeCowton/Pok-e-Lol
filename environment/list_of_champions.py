@@ -9,7 +9,16 @@ ahri = Champion('Ahri',
 							'W': ahri_w,
 							'E': ahri_e,
 							'R': ahri_r,
-						  })
+						  },
+				ocean={
+
+						'O':0,
+						'C':0,
+						'E':0,
+						'A':0,
+						'N':0
+					  }
+				)
 
 kata = Champion('Katarina',
 				abilities={
@@ -17,6 +26,15 @@ kata = Champion('Katarina',
 							'W': kata_w,
 							'E': kata_e,
 							'R': kata_r,
-						  })
+						  },
+				ocean={
+
+						'O':0,
+						'C':0,
+						'E':0,
+						'A':0,
+						'N':0
+					  }
+				)
 
 champions = [ahri, kata]

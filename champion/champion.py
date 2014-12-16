@@ -18,6 +18,10 @@ class Champion(object):
 		self.set_abilities(abilities)
 		self.ocean = ocean
 
+		# Emotional variables
+		self.logic = 1
+		self.logic_degrader = 0
+
 	def __repr__(self):
 		return self.name
 
@@ -47,6 +51,10 @@ class Champion(object):
 		"""
 
 		self.health -= damage
+		try:
+			self.logic -= self.logic_degrader
+		except AttributeError:
+			pass
 
 		# # If the shield can take all the damage
 		# if shield >= damage:

@@ -47,21 +47,26 @@ class NPCManager(object):
 			]
 
 		# Count occurences of high and low in logic_calc_inputs
-		if logic_calc_inputs.count('HIGH') == 2:
+		if logic_calc_inputs.count('HIGH') >= 2:
 			# Set logic at the highest value
 			self.npc.logic = 1.0
-		elif logic_calc_inputs.count('LOW') == 2:
+		elif logic_calc_inputs.count('LOW') >= 2:
 			# Set logic to the low value
 			self.npc.logic = 0.5
 		else:
 			raise ValueError
 
 		# Calculate if `E` is high or low
+		self.npc.extroversion = find_membership(self.npc.ocean.get('E'))
 
 
 		# N will cause the degradtion of L
-			# If N is high: degradtion is fast
-			# If N is low: degradtion is slow
+			# If N is high: degradtion 0.3
+			# If N is low: degradtion 0.1
+		if find_membership(self.npc.ocean.get('N'))  is 'HIGH':
+			self.npc.logic_degrader = 0.03
+		else:
+			self.npc.logic_degrader = 0.01
 
 	# ---------- Decisions functions ------------
 

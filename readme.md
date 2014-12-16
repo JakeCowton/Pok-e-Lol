@@ -135,6 +135,8 @@ Once an item system is developed, an MLP will be used to calculate what to do us
 ### OCEAN Emotion modelling
 Each champion will get a score for each of the components of OCEAN. These will be used to make decisions.
 
+Openness, conscientiousness and agreeableness are used to calculate `logic` by taking the majority of whether they point to high or low logic. If the majority point to high then `logic` is set to high and vice versa.
+
 #### Openness
 
 Scores here are inversely proportional to logic.

@@ -1,4 +1,6 @@
 # engine.pys
+
+from numpy.random import choice
 from ability_manager import AbilityManager
 from ..champion.ability import AbilityHeal, AbilityOverTime
 from .npc import NPCManager
@@ -111,23 +113,30 @@ class GameEngine(object):
                                                     self.user.health
                                                     ])
         ability = None
-        while not ability:
+        # If NPC is not an extrovert use the NN to choose ability
+        if self.npc.extroversion.upper() is 'LOW':
+            while not ability:
 
-            if a_or_d == 'attack':
-                ability = self.npc_manager.choose_attack()
-            elif a_or_d == 'defend':
-                ability = self.npc_manager.choose_defence()
-                if not ability:
+                if a_or_d.upper() == 'ATTACK':
                     ability = self.npc_manager.choose_attack()
-            else:
-                raise KeyError
+                elif a_or_d.upper() == 'DEFEND':
+                    ability = self.npc_manager.choose_defence()
+                    if not ability:
+                        ability = self.npc_manager.choose_attack()
+                else:
+                    raise KeyError
 
 
-            if not self.npc.abilities.has_key(ability) or \
-              not self.npc.abilities.get(ability).useable():
-                ability = None
-            else:
-                ability = self.npc.abilities.get(ability)
+                if not self.npc.abilities.has_key(ability) or \
+                  not self.npc.abilities.get(ability).useable():
+                    ability = None
+                else:
+                    ability = self.npc.abilities.get(ability)
+
+        # If they are an extrovert, take a random ability
+        else:
+            ability = self.npc.abilities.get(
+                choice(self.npc.abilities.keys()))
 
         # If ability is a heal, use on self
         if isinstance(ability, AbilityHeal):

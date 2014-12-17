@@ -74,7 +74,11 @@ class GameEngine(object):
         # Otherwise, use on NPC
         else:
             ability.use(self.npc)
-        self.interface.attack(champion, ability, self.npc)
+
+        if isinstance(ability, AbilityHeal):
+            self.interface.defend(champion, ability)
+        else:
+            self.interface.attack(champion, ability, self.npc)
 
 
         # Ability is put on cooldown
@@ -165,7 +169,10 @@ class GameEngine(object):
             ability.use(self.user)
 
         # Print what the attack used
-        self.interface.attack(champion, ability, self.user)
+        if isinstance(ability, AbilityHeal):
+            self.interface.defend(champion, ability)
+        else:
+            self.interface.attack(champion, ability, self.user)
 
         # Ability is put on cooldown
         self.npc_ability_manager.put_on_cd(ability)

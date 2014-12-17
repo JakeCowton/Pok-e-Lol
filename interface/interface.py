@@ -53,6 +53,10 @@ class Interface(object):
 			# These will be heals as they have no damage
 			print "%s uses %s on %s" % (attacker, ability, atackee)
 
+	def defend(self, defender, ability):
+		print ""
+		print "%s uses %s - %d health" % (defender, ability, ability.health)
+
 	def over_time(self, list_item):
 		"""
 		Says who is affected by what over time ability

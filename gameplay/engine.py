@@ -17,7 +17,8 @@ class GameEngine(object):
         self.npc = npc
         self.npc_manager = NPCManager(self.npc, self.user)
         self.turn_count = 0
-        self.ability_manager = AbilityManager(self.interface)
+        self.user_ability_manager = AbilityManager(self.interface)
+        self.npc_ability_manager = AbilityManager(self.interface)
 
         self.run()
 
@@ -26,7 +27,6 @@ class GameEngine(object):
         Creates a loop to run the game in
         """
         while self.user.health > 0 and self.npc.health > 0:
-
             # Display game info e.g. health
             self.interface.display_info([self.user, self.npc])
 
@@ -34,12 +34,15 @@ class GameEngine(object):
                 # User
                 self.user_turn(self.user)
 
+                # Do the NPC ability_management stuff
+                self.npc_ability_manager.turn()
+
             else:
                 # NPC
                 self.npc_turn(self.npc)
 
-                # Do the ability_management stuff
-                self.ability_manager.turn()
+                # Do the USER ability manager stuff
+                self.user_ability_manager.turn()
 
         self.interface.game_over(user=self.user, npc=self.npc)
 
@@ -64,7 +67,7 @@ class GameEngine(object):
 
         elif isinstance(ability, AbilityOverTime):
             # Add to the ability manager
-            self.ability_manager.begin_over_time(ability, self.npc, self.user)
+            self.user_ability_manager.begin_over_time(ability, self.npc, self.user)
             # Use for first time
             ability.use(self.npc)
 
@@ -75,7 +78,7 @@ class GameEngine(object):
 
 
         # Ability is put on cooldown
-        self.ability_manager.put_on_cd(ability)
+        self.user_ability_manager.put_on_cd(ability)
 
 
         self.turn_count += 1
@@ -153,7 +156,7 @@ class GameEngine(object):
         # If ability is an over time use on user and add to m
         elif isinstance(ability, AbilityOverTime):
             # Add to the ability manager
-            self.ability_manager.begin_over_time(ability, self.user, self.npc)
+            self.npc_ability_manager.begin_over_time(ability, self.user, self.npc)
             # Use for first time
             ability.use(self.user)
 
@@ -165,7 +168,7 @@ class GameEngine(object):
         self.interface.attack(champion, ability, self.user)
 
         # Ability is put on cooldown
-        self.ability_manager.put_on_cd(ability)
+        self.npc_ability_manager.put_on_cd(ability)
 
         # Increment the turn counter
         self.turn_count += 1

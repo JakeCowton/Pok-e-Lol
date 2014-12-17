@@ -61,8 +61,8 @@ class Interface(object):
 		"""
 		ability, receiver, turns_remaining, giver = list_item
 		print ""
-		print "%s is damaged by %s's %s for %d more turns - %d damage" % \
-			(receiver, giver, ability, turns_remaining, ability.damage)
+		print "%s is still damaged by %s's %s  - %d damage" % \
+			(receiver, giver, ability, ability.damage)
 		print ""
 
 	def game_over(self, user, npc):

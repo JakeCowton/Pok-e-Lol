@@ -4,10 +4,6 @@ class AbilityManager(object):
 	"""
 	Manages ability cooldowns and damage over time
 	"""
-	# [[ability, receiver, turns_remaining]...]
-	abilities_over_time = []
-	# [[ability, turns_remaining]...]
-	abilities_on_cd = []
 
 	def __init__(self, interface):
 		"""
@@ -15,6 +11,10 @@ class AbilityManager(object):
 		:param interface: The interface used for outputing data
 		"""
 		self.interface = interface
+		# [[ability, receiver, turns_remaining]...]
+		self.abilities_over_time = []
+		# [[ability, turns_remaining]...]
+		self.abilities_on_cd = []
 
 	def turn(self):
 		"""

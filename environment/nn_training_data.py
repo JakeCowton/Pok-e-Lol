@@ -2,9 +2,9 @@
 
 import numpy as np
 
-def get_ahri():
+def get_training_data():
 	"""
-	Training data for Ahri champion
+	Training data for champions
 	"""
 	# Available
 	AVAIL = 1.0

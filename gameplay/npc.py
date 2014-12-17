@@ -1,6 +1,6 @@
 
 from numpy import array
-from ..environment import nn_training_data
+from ..environment.nn_training_data import get_training_data
 from ..environment.slp_training_data import slp_t_data
 from ..ann.nn_manager import create_nn, call_nn
 from ..slp.slp_manager import create_slp, call_slp
@@ -15,11 +15,7 @@ class NPCManager(object):
 		self.npc = npc
 		self.user = user
 
-		data = None
-		# Get training data
-		if npc.name.upper() == 'AHRI':
-			self.name = 'Ahri'
-			data = nn_training_data.get_ahri()
+		data = get_training_data()
 
 		# Get the nerual networked trained to the npc
 		self.nn = create_nn(data)

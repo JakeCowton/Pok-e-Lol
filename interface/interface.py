@@ -40,10 +40,18 @@ class Interface(object):
 		print "%s, which ability will you take? " % champion
 		print ""
 		print "Available abilities:"
+
 		for key, ability in champion.get_available_abilities().iteritems():
 			print "%s - %s" % (key, ability)
+
 		print ""
-		ability = raw_input("Choose: ")
+
+		ability = None
+		while not ability:
+			ability = raw_input("Choose: ")
+			if not champion.get_available_abilities().has_key(ability.upper()):
+				ability = None
+
 		sys('clear')
 
 		return ability.upper()

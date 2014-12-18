@@ -22,7 +22,14 @@ class Interface(object):
 		for i in range(len(champions)):
 			print "%d - %s" % (i, champions[i])
 		print "\n"
-		user_champion = raw_input("Which champion will you take? ")
+		user_champion = None
+
+		while not user_champion:
+			user_champion = raw_input("Which champion will you take? ")
+			if not int(user_champion) < len(champions):
+				print "Invalid choice"
+				user_champion = None
+
 		sys('clear')
 
 		return int(user_champion)

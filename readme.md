@@ -4,12 +4,17 @@ This document will outline what will be achieved by the AI assignment
 
 [TOC]
 
-## How to run
+## How to Run
 
 1. Download the source code (this example will assume you have downloaded to `/home/[user_name]/Downloads/`)
 2. Extract the tarball
 3. Navigate to `/home/[user_name]/Downloads/`
 4. Run `ipython -m Pok-e-Lol.manager`
+
+## How to Test
+
+1. Navigate to `/home/[user_name]/Downloads/`
+2. Run `python -m unittest discover --pattern=tests.py`
 
 ## Concept
 - League of Legends crossed with pokemon style game

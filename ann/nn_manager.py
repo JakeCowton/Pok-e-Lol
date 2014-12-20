@@ -34,7 +34,6 @@ def create_nn(data):
 	"""
 	ann = NN(6,3,3)
 	_train(ann, data)
-	find_mse(ann, get_test_data())
 	return ann
 
 def _normalise(data):
@@ -73,8 +72,8 @@ def call_nn(nn, data):
 def find_mse(nn, data):
 
 	mse = 0
-	from ipdb import set_trace; set_trace()
-	for i in range(data):
+
+	for i in range(data.size):
 		given_out = nn.feed_forward(data['inputs'][i])
 		expected_out = data['outputs'][i]
 

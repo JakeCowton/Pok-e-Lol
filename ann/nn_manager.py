@@ -3,6 +3,7 @@
 import numpy as np
 from os import system as sys
 from .nn import NN
+from ..environment.nn_training_data import get_test_data
 
 def _train(net, data, epochs=1000, lr=0.1, momentum=0.1):
 	"""
@@ -33,6 +34,7 @@ def create_nn(data):
 	"""
 	ann = NN(6,3,3)
 	_train(ann, data)
+	find_mse(ann, get_test_data())
 	return ann
 
 def _normalise(data):
@@ -67,3 +69,24 @@ def call_nn(nn, data):
 
 	data = _normalise(data)
 	return nn.feed_forward(data)
+
+def find_mse(nn, data):
+
+	mse = 0
+	from ipdb import set_trace; set_trace()
+	for i in range(data):
+		given_out = nn.feed_forward(data['inputs'][i])
+		expected_out = data['outputs'][i]
+
+		diff = abs(expected_out - given_out)
+		iter_error = 0
+		for error in diff:
+			iter_error += error**2
+
+		iter_error = iter_error/len(diff)
+
+		mse += iter_error
+
+	mse = mse / len(data)
+
+	return mse

@@ -32,7 +32,7 @@ def create_nn(data):
 	:param data: Training data for the network
 	:returns: A trained NN object
 	"""
-	ann = NN(6,3,3)
+	ann = NN(6, 6, 6, 3)
 	_train(ann, data)
 	return ann
 

@@ -1,9 +1,10 @@
 # Gives access to the NN
 
 import numpy as np
+from os import system as sys
 from .nn import NN
 
-def _train(net, data, epochs=10000, lr=0.1, momentum=0.1):
+def _train(net, data, epochs=1000, lr=0.1, momentum=0.1):
 	"""
 	Train `net` with `data`
 	:param net: the network to train
@@ -13,9 +14,15 @@ def _train(net, data, epochs=10000, lr=0.1, momentum=0.1):
 	:param momentum: NN momentum
 	"""
 	for i in range(epochs):
-		n = np.random.randint(data.size)
-		net.feed_forward(data['inputs'][n])
-		net.back_propagate(data['outputs'][n], lr, momentum)
+		# Show how long is left
+		sys('clear')
+		print "Loading... %d%%" % int(float(i)/epochs * 100)
+
+		# Run one epoch
+		for n in range(data.size):
+			net.feed_forward(data['inputs'][n])
+			net.back_propagate(data['outputs'][n], lr, momentum)
+	sys('clear')
 
 def create_nn(data):
 	"""

@@ -94,7 +94,8 @@ class NN(object):
 		# Calculate hidden errors
 		# This range is from the hightest layer down to the lowest
 		for i in range(self.no_of_layers-2,0,-1):
-			change = np.dot(changes[0],self.weights[i].T)*sigmoid_first_d(self.layers[i])
+			change = np.dot(changes[0],self.weights[i].T)*\
+				sigmoid_first_d(self.layers[i])
 			changes.insert(0, change)
 
 

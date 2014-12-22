@@ -123,7 +123,7 @@ class GameEngine(object):
         available_abilities = self.npc.get_available_abilities()
 
         # If NPC is not an extrovert use the NN to choose ability
-        if self.npc.extroversion.upper() == 'LOW':
+        if not self.npc.extroversion.upper() == 'HIGH':
             while not ability:
 
                 if a_or_d.upper() == 'ATTACK':

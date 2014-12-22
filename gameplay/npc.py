@@ -36,19 +36,24 @@ class NPCManager(object):
 		"""
 		# Use a combination of whether O, C and A are high or low to determine
 		# logic follows the majority of the 3 (O is inverse)
-		logic_calc_inputs = [
+		logic_inputs = [
 			find_membership(self.npc.ocean.get('O'), direct=False),
 			find_membership(self.npc.ocean.get('C')),
 			find_membership(self.npc.ocean.get('A'))
 			]
 
-		# Count occurences of high and low in logic_calc_inputs
-		if logic_calc_inputs.count('HIGH') >= 2:
-			# Set logic at the highest value
+		# Count occurences of high and low in logic_inputs
+		if 'HIGH' in logic_inputs and \
+		   'MID' in logic_inputs and \
+		   'LOW' in logic_inputs:
+			self.npc.logic = 0.66
+
+		elif max(set(logic_inputs), key=logic_inputs.count) == 'HIGH':
 			self.npc.logic = 1.0
-		elif logic_calc_inputs.count('LOW') >= 2:
-			# Set logic to the low value
-			self.npc.logic = 0.5
+		elif max(set(logic_inputs), key=logic_inputs.count) == 'MID':
+			self.npc.logic = 0.66
+		elif max(set(logic_inputs), key=logic_inputs.count) == 'LOW':
+			self.npc.logc = 0.33
 		else:
 			raise ValueError
 
@@ -56,13 +61,15 @@ class NPCManager(object):
 		self.npc.extroversion = find_membership(self.npc.ocean.get('E'))
 
 
-		# N will cause the degradtion of L
-			# If N is high: degradtion 0.3
-			# If N is low: degradtion 0.1
+		# N will cause the degradtion of `logic`
 		if find_membership(self.npc.ocean.get('N'))  == 'HIGH':
 			self.npc.logic_degrader = 0.03
-		else:
+		elif find_membership(self.npc.ocean.get('N'))  == 'MID':
+			self.npc.logic_degrader = 0.02
+		elif find_membership(self.npc.ocean.get('N'))  == 'LOW':
 			self.npc.logic_degrader = 0.01
+		else:
+			raise ValueError
 
 	# ---------- Decisions functions ------------
 

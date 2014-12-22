@@ -3,7 +3,6 @@
 import numpy as np
 from os import system as sys
 from .nn import NN
-from ..environment.nn_training_data import get_test_data
 
 def _train(net, data, epochs=1000, lr=0.1, momentum=0.1):
 	"""

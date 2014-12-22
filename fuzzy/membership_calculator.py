@@ -72,7 +72,7 @@ def find_membership(x, direct=True):
     """
     # If high membership is largest
     if membership_for_high(x) >= membership_for_low(x) and \
-                                 membership_for_mid(x):
+       membership_for_high(x) >=membership_for_mid(x):
 
         # If x is directly proporional to logic
         # Return the raw result
@@ -85,12 +85,12 @@ def find_membership(x, direct=True):
 
     # If mid membership is largest
     elif membership_for_mid(x) >= membership_for_low(x) and \
-                                  membership_for_high(x):
+         membership_for_mid(x) >=membership_for_high(x):
         return "MID"
 
     # If low membership is largest
     elif membership_for_low(x) >= membership_for_high(x) and \
-                                  membership_for_mid(x):
+         membership_for_low(x) >= membership_for_mid(x):
         # If x is directly proporional to logic
         # Return the raw result
         if direct:

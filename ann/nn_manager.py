@@ -49,7 +49,11 @@ def _normalise(data):
 
 	r_dam = float(r_dam) / float(500)
 
+	r_avail = float(r_avail)
+
 	w_dam = float(w_dam)/float(500)
+
+	w_avail = float(w_avail)
 
 	q_dam = float(q_dam) / float(500)
 

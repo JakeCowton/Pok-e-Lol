@@ -66,7 +66,8 @@ class Champion(object):
 		self.health -= damage
 
 		# This only affects an NPC
-		self.logic -= self.logic_degrader
+		if self.logic > 0.1:
+			self.logic -= self.logic_degrader
 
 		# # If the shield can take all the damage
 		# if shield >= damage:

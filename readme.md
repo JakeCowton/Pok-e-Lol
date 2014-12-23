@@ -14,7 +14,7 @@ This document will outline what will be achieved by the AI assignment
 ## How to Test
 
 1. Navigate to `/home/[user_name]/Downloads/`
-2. Run `python -m unittest discover --pattern=tests.py`
+2. Run `python -m unittest discover -s . -p '*tests.py'`
 
 ## Concept
 - League of Legends crossed with pokemon style game

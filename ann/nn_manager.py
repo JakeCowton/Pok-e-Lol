@@ -14,15 +14,10 @@ def _train(net, data, epochs=1000, lr=0.1, momentum=0.1):
 	:param momentum: NN momentum
 	"""
 	for i in range(epochs):
-		# Show how long is left
-		sys('clear')
-		print "Loading... %d%%" % int(float(i)/epochs * 100)
-
 		# Run one epoch
 		for n in range(data.size):
 			net.feed_forward(data['inputs'][n])
 			net.back_propagate(data['outputs'][n], lr, momentum)
-	sys('clear')
 
 def create_nn(data):
 	"""

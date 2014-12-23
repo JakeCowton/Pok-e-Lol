@@ -92,7 +92,6 @@ class Interface(object):
 		:type npc: Champion()
 		:param npc: The npc object
 		"""
-		sys('clear')
 		print "The game is over"
 		# set any sub zero healths to 0
 		if user.health <= 0:

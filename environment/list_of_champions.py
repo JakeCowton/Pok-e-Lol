@@ -22,12 +22,12 @@ ahri = Champion('Ahri (Normal)',
 				)
 
 # Illogical & Neurotic Ahri
-i_ahri = Champion('Ahri (Illogical & Neurotic)',
+veigar = Champion('Veigar (Illogical & Neurotic)',
 				abilities={
-							'Q': ahri_q,
-							'W': ahri_w,
-							'E': ahri_e,
-							'R': ahri_r,
+							'Q': veigar_q,
+							'W': veigar_w,
+							'E': veigar_e,
+							'R': veigar_r,
 						  },
 				ocean={
 
@@ -40,12 +40,12 @@ i_ahri = Champion('Ahri (Illogical & Neurotic)',
 				)
 
 # Very Logical Ahri
-l_ahri = Champion('Ahri (Very Logical)',
+kassadin = Champion('Kassadin (Very Logical)',
 				abilities={
-							'Q': ahri_q,
-							'W': ahri_w,
-							'E': ahri_e,
-							'R': ahri_r,
+							'Q': kassadin_q,
+							'W': kassadin_w,
+							'E': kassadin_e,
+							'R': kassadin_r,
 						  },
 				ocean={
 
@@ -73,4 +73,4 @@ kata = Champion('Katarina',
 					  }
 				)
 
-champions = [ahri, i_ahri, l_ahri, kata]
+champions = [ahri, veigar, kassadin, kata]

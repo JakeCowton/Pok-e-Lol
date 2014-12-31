@@ -1,5 +1,6 @@
 # Interface for the game
 from os import system as sys
+from ..champion.ability import AbilityHeal, AbilityOverTime
 
 class Interface(object):
 
@@ -42,7 +43,12 @@ class Interface(object):
 		print "Available abilities:"
 
 		for key, ability in champion.get_available_abilities().iteritems():
-			print "%s - %s" % (key, ability)
+			if type(ability) == AbilityHeal:
+				print "%s - %s : Gives %d health" % (key, ability, ability.health)
+			elif type(ability) == AbilityOverTime:
+				print "%s - %s : Deals %d damage over %d turns" % (key, ability, ability.damage, ability.turns)
+			else:
+				print "%s - %s : Deals %d damage over 1 turn" % (key, ability, ability.damage)
 
 		print ""
 

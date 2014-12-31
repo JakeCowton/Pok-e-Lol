@@ -9,6 +9,7 @@ This document will outline what will be achieved by the AI assignment
 1. Download the source code (this example will assume you have downloaded to `/home/[user_name]/Downloads/`)
 2. Extract the tarball
 3. Navigate to `/home/[user_name]/Downloads/`
+4. Run `pip install -r Pok-e-Lol/requirements.txt`
 4. Run `ipython -m Pok-e-Lol.manager`
 
 ## How to Test
